@@ -89,6 +89,32 @@ For training and validation datasets, we converted all not `LOC` labels into O
 - Final F1-score on the public leaderboard: **0.50**  
 - This score represents the baseline performance before more advanced modeling (CRF, pre-trained transformers, or augmented datasets).
 
+### 4.3 LSTM + FastText + CRF Model
+
+**Tokenization**
+- Word-level tokenization with punctuation split as separate tokens.
+- Stanza tokenizer used for Ukrainian text; emojis and noise removed.
+
+**Embeddings**
+- Pretrained FastText word vectors (300-dim).
+- Unknown tokens replaced with a **trainable UNK embedding**.
+
+**Architecture**
+- **BiLSTM encoder**: hidden size 128, 2 layers, dropout 0.3.
+- **Linear layer** to project LSTM outputs to label logits.
+- **CRF decoding layer** to enforce valid label transitions (improves sequence consistency over softmax).
+
+**Loss & Optimization**
+- Loss: negative log-likelihood from CRF, with padding masked via `ignore_index = -100`.
+- Optimizer: Adam, learning rate `1e-3`.
+
+**Training**
+- Trained for **15 epochs**, best validation performance at **epoch 9**.
+- Model logs precision, recall, and F1 each epoch.
+
+**Performance**
+- Kaggle public leaderboard F1-score: **0.50**.
+- Serves as an improved classical model before transformer-based approaches.
 
 ### 4.2 Tried Models
 List all attempted models:
