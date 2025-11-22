@@ -106,6 +106,12 @@ For training and validation datasets, we converted all not `LOC` labels into O
 - Trained for **10 epochs**, best validation performance at **epoch 6**.
 **Performance**
 - Kaggle public leaderboard F1-score: **0.50**.
+- <img width="424" height="192" alt="image" src="https://github.com/user-attachments/assets/36cabf96-678e-4258-8cef-20b6697865d3" />
+
+
+### other models
+<img width="385" height="153" alt="image" src="https://github.com/user-attachments/assets/bbf343ab-da1f-43e3-a33c-33dc7b70cd9a" />
+
 - As the final submission should consist only of extracted locations, CRF improves the correctness of label orders, but it doesn`t really influence the final submission.
 
 
