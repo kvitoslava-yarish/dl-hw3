@@ -70,27 +70,21 @@ For training and validation datasets, we converted all not `LOC` labels into O
 - Word-level FastText embeddings handle RU/UA morphology well due to subword information.  
 - BiLSTM + softmax provides a simple, interpretable baseline that is easy to train and compares well to classical NER baselines.
 ## 4.2 Training Setup
-
 **Loss Function**  
 - We use `CrossEntropyLoss` with `ignore_index = -100` to ensure that padding tokens do not contribute to the loss.
-
 **Optimizer**  
 - Optimizer: **Adam**  
 - Learning rate: **1e-3**
-
 **Model Dimensions**  
 - BiLSTM hidden size: **128**
-
 **Training Procedure**  
 - The model is trained for **15 epochs**.  
 - Based on validation metrics, the **best performance was achieved at epoch 9**.  
 - Training was stable, and no overfitting was observed before epoch 9.
 **Kaggle Submission Performance**  
 - Final F1-score on the public leaderboard: **0.50**  
-- This score represents the baseline performance before more advanced modeling (CRF, pre-trained transformers, or augmented datasets).
 
 ### 4.3 LSTM + FastText + CRF Model
-
 **Tokenization**
 - Word-level tokenization with punctuation split as separate tokens.
 - Stanza tokenizer used for Ukrainian text; emojis and noise removed.
@@ -109,34 +103,15 @@ For training and validation datasets, we converted all not `LOC` labels into O
 - Optimizer: Adam, learning rate `1e-3`.
 
 **Training**
-- Trained for **15 epochs**, best validation performance at **epoch 9**.
-- Model logs precision, recall, and F1 each epoch.
-
+- Trained for **10 epochs**, best validation performance at **epoch 6**.
 **Performance**
 - Kaggle public leaderboard F1-score: **0.50**.
-- Serves as an improved classical model before transformer-based approaches.
+- As the final submission should consist only of extracted locations, CRF improves the correctness of label orders, but it doesn`t really influence the final submission.
 
-### 4.2 Tried Models
-List all attempted models:
-- Model 1 — short description  
-- Model 2 — short description  
-- Model 3 — short description  
 
-### 4.3 Model Architecture (Deep Learning)
-- Layer structure  
-- Embeddings  
-- Loss function  
-- Optimizer  
+## Ensemble model
 
----
-
-## 5. Hyperparameters
-
-### 5.1 Tuning Strategy
-- Grid search / random search / Bayesian / manual  
-- Validation strategy  
-
-### 5.2 Final Hyperparameter Values
+## 5 Final results 
 | Hyperparameter | Value |
 |----------------|-------|
 | learning_rate  | ...   |
@@ -144,41 +119,9 @@ List all attempted models:
 | hidden_units   | ...   |
 | dropout        | ...   |
 
----
-
-## 6. Evaluation
-
-### 6.1 Metrics
-- Accuracy, Precision, Recall, F1  
-- ROC-AUC  
-- Loss curves  
-- Confusion matrix  
-
-### 6.2 Optimization Curves
-Include:
-- Training vs validation loss  
-- Training vs validation metric  
-
-### 6.3 Error Analysis
-- Example correct predictions  
-- Example incorrect predictions  
-- Edge-case behavior  
-
----
 
 ## 7. Model Insights
 
-### 7.1 Feature Importance
-- SHAP values  
-- Permutation importance  
-- Model-specific importance  
-
-### 7.2 Behavioral Analysis
-- Performance on subsets  
-- Sensitivity to specific features  
-- Robustness checks  
-
----
 
 ## 8. Conclusions
 Summarize:
@@ -187,24 +130,5 @@ Summarize:
 - Key insights  
 - Limitations of the solution  
 
----
 
-## 9. Future Work
-Possible next steps:
-- More data  
-- Additional features  
-- New models  
-- Better hyperparameter tuning  
-- Deployment considerations  
 
----
-
-## 10. Reproducibility
-
-### 10.1 Environment
-Document Python version and dependencies.
-
-### 10.2 How to Run
-```bash
-python train.py
-python evaluate.py
