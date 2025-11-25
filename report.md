@@ -122,8 +122,38 @@ kaggle - 0.53
 
 
 
-## Ensemble model
+## Model Architecture
 
+*Type:* BiLSTM-CRF Sequence Tagger
+
+*Embeddings:*
+- BytePairEmbeddings ('multi')
+- FlairEmbeddings ('multi-forward')
+- FlairEmbeddings ('multi-backward')
+- Stacked embeddings approach
+
+*Model Configuration:*
+
+- Hidden size: 256
+- RNN layers: 2
+- Dropout: 0.3
+- Word dropout: 0.05
+- Locked dropout: 0.5
+- CRF layer: enabled
+
+
+## Training Configuration
+
+- *Learning rate:* 0.1
+- *Batch size:* 256
+- *Max epochs:* 15
+- *Mixed precision:* AMP enabled
+- *GPU:* T4
+- *Storage mode:* 'none' (memory efficient)
+- *Checkpoints:* Every epoch
+
+Val: 0.95
+LB: 0.56
 
 
 
