@@ -124,24 +124,10 @@ kaggle - 0.53
 
 ## Ensemble model
 
-## 5 Final results 
-| Hyperparameter | Value |
-|----------------|-------|
-| learning_rate  | ...   |
-| batch_size     | ...   |
-| hidden_units   | ...   |
-| dropout        | ...   |
 
-
-## 7. Model Insights
 
 
 ## 8. Conclusions
-Summarize:
-- What worked  
-- What did not work  
-- Key insights  
-- Limitations of the solution  
 
 
 
